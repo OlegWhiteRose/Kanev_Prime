@@ -1,0 +1,25 @@
+li {
+    font-family: 'Montserrat';
+    color: white;
+    font-size: clamp(18px, 2vw, 28px);
+    padding: 10px;
+}
+
+.li-header {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: bold;
+    margin-left: 40px;
+    font-size: clamp(18px, 2vw, 28px);
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.checklist-container {
+    
+}
