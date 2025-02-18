@@ -1,0 +1,35 @@
+.panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+}
+
+.upper-panel {
+    height: 64px;
+    width: 100%;
+}
+
+.bottom-panel {
+    height: 64px;
+    width: 100%;
+}
+
+.left-panel {
+    background-color: #121212;
+    height: 98.5%;
+    width: 64px;
+    border-radius: 14px;
+    margin-left: 10px;
+}
+
+.main-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    height: 98.5%;
+    width: 95.2%;
+    margin-left: 8px;
+    border-radius: 14px;
+}
