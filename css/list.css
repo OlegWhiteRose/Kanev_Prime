@@ -1,8 +1,8 @@
 li {
     font-family: 'Montserrat';
     color: white;
-    font-size: clamp(18px, 2vw, 28px);
-    padding: 10px;
+    font-size: clamp(20px, 2vw, 23px);
+    padding: 15px;
 }
 
 .li-header {
@@ -10,16 +10,20 @@ li {
     color: white;
     font-weight: bold;
     margin-left: 40px;
-    font-size: clamp(18px, 2vw, 28px);
+    margin-top: 0.5vh;
+    font-size: clamp(20px, 2vw, 23px);
 }
 
 .checklist {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     height: 100%;
 }
 
 .checklist-container {
-    
+    height: 393px;
+
+    @media (max-width: 850px) {
+        display: none;
+    }
 }

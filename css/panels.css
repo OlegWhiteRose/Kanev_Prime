@@ -16,11 +16,14 @@
 }
 
 .left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     background-color: #121212;
     height: 98.5%;
     width: 74px;
     border-radius: 14px;
-    margin-left: 10px;
+    margin-left: 11px;
 }
 
 .main-panel {
@@ -32,4 +35,8 @@
     width: 94.8%;
     margin-left: 8px;
     border-radius: 14px;
+
+    @media (max-height: 550px) {
+        align-items: flex-start;
+    }
 }
