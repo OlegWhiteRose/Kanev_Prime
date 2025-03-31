@@ -87,7 +87,9 @@ a {
 }
 
 .plus:hover {
-  filter: brightness(110%);
+  filter: brightness(105%);
+  scale: 1.1;
+  transition: scale 0.7s ease-in-out;
 }
 
 .tg {
@@ -117,6 +119,7 @@ a.home {
 }
 
 a.home:hover {
-  filter: brightness(120%);
-  scale: 1.05;
+  filter: brightness(105%);
+  scale: 1.1;
+  transition: scale 0.7s ease-in-out;
 }

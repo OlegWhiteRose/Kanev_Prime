@@ -27,12 +27,12 @@
 
 /* селектор для кнопок первостепенных операций */
 .my-btn.primary { 
-    background: #30c3cb; /* цвет кнопки оранжевый */
+    background: rgb(18, 158, 88); /* цвет кнопки оранжевый */
 }
 
 /* селектор для кнопок второстепенных операций */
 .my-btn.secondary { 
-    background: #16582d; /* цвет кнопки сервый */
+    background: rgb(18, 158, 88); /* цвет кнопки сервый */
 }
 
 /* селектор для кнопки расчета выражения (=) */
@@ -60,7 +60,6 @@
 .calc-background {
     display: flex;
     padding: 12px;
-    border-radius: 20px;
     flex-direction: column;
     align-items: center;
     background-color: #2a2a2a;
