@@ -50,7 +50,72 @@ window.onload = function(){
         if (a === '') return
         selectedOperation = '/'
     }
+    document.getElementById("btn_op_mod").onclick = function() { 
+        if (a === '') return
+        selectedOperation = '%'
+    }
+
+    // унарные операции
+    document.getElementById("btn_op_change").onclick = function() {
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+        
+        num = ((+num) * -1).toString()
+        changeNum(num);
+    }
+    document.getElementById("btn_op_sqrt").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+
+        num = Math.sqrt(+a).toString();
+        changeNum(num);
+    }
+    document.getElementById("btn_op_square").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+
+        num = Math.pow(+num, 2).toString();
+        changeNum(num);
+    }
+    document.getElementById("btn_op_fac").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+        if (+num < 0) return;
+
+        res = 1;
+        for (let i = 1; i <= +num; ++i) {
+            res *= i;
+        }
+        num = (res).toString();
+        changeNum(num);
+    }
+    document.getElementById("btn_op_backspace").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+
+        num = num.slice(0, -1);
+        changeNum(num);
+    }
     
+    function changeNum(num) {
+        if (b === '') {
+            a = num;
+        } else {
+            b = num;
+        }
+        print(num);
+    }
+
     // кнопка очищения
     document.getElementById("btn_op_clear").onclick = function() { 
         a = ''
@@ -78,12 +143,19 @@ window.onload = function(){
             case '/':
                 expressionResult = (+a) / (+b)
                 break;
+            case '%':
+                expressionResult = (+a) % (+b)
+                break;
         }
         
         a = expressionResult.toString()
         b = ''
         selectedOperation = null
     
-        outputElement.innerHTML = a
+        print(a);
     }
-    };
+
+    function print(arg) {
+        outputElement.innerHTML = +arg
+    }
+};
