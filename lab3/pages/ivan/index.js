@@ -1,27 +1,8 @@
-import {ProductComponent} from "../../components/product/index.js";
-import {BackButtonComponent} from "../../components/back-button/index.js";
-import {MainPage} from "../main/index.js";
-
-
-export class ProductPage {
-    constructor(parent, id) {
-        this.parent = parent
-        this.id = id
+export class IvanPage {
+    constructor(parent) {
+        this.parent = parent;
     }
-
-    getData() {
-        return {
-            id: 1,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: `Акция ${this.id}`,
-            text: "Такой акции вы еще не видели"
-        }
-    }
-
-    get pageRoot() {
-        return document.getElementById('product-page')
-    }
-
+        
     getHTML() {
         return (
             `
@@ -34,7 +15,7 @@ export class ProductPage {
                             <img src="img/9073942_home_icon.svg" width="22px">
                         </a>
                     </div>
-                    <button class="global-button">
+                    <button class="global-button" onclick="window.location.href='ivan.html'">
                         <div class="main-text author">Автор: Сысоев Иван ИУ5</div>
                     </button>
                     <a href="https://github.com/OlegWhiteRose/" class="main-text github">github</a>
@@ -49,28 +30,17 @@ export class ProductPage {
                     </nav>
 
                     <div class="main-panel">
-                        <div id="product-page" class="product-page"></div>
+                        <h1 class="some-text">Иван Сысоев ИУ5-41Б ICS BMSTU Student</h1>
                     </div>
                 </div>
             `
         )
     }
 
-    clickBack() {
-        const mainPage = new MainPage(this.parent)
-        mainPage.render()
-    }
-
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
-    
-        const backButton = new BackButtonComponent(this.pageRoot)
-        backButton.render(this.clickBack.bind(this))
-    
-        const data = this.getData()
-        const stock = new ProductComponent(this.pageRoot)
-        stock.render(data)
     }
 }
+
