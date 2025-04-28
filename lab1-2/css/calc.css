@@ -42,7 +42,7 @@
   
 /* селектор для поля вывода результата */
 .result { 
-    width: 220px;
+    width: 284px;
     height: 80px;
     display: flex;
     align-items: center;
@@ -53,8 +53,19 @@
     text-align: right;           /* примагнитим текст к правой стороне */
     color: #433f3f;              /* цвет текста белый */
     border-radius: 14px;
-    font-size: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.big {
+    font-size: 1.5rem;
+}
+
+.medium {
+    font-size: 1rem;
+}
+
+.small {
+    font-size: 0.8rem;
 }
   
 .calc-background {

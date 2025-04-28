@@ -50,7 +50,7 @@
             </div>
             <div class="calc-background"> 
                 <!-- блок с экраном калькулятора, где будет выводиться результат вычислений. -->
-                <div id="result" class="result">
+                <div id="result" class="result big">
                 0
                 </div>
         
@@ -59,8 +59,8 @@
                 <!--горизонтальный ряд из четырех кнопок-->
                 <div>  
                     <button id="btn_op_clear" class="my-btn secondary">C</button>    <!-- про тэг кнопки: https://www.w3schools.com/tags/tag_button.asp -->
-                    <button id="btn_op_sign" class="my-btn secondary">+/-</button>
-                    <button id="btn_op_percent" class="my-btn secondary">%</button>
+                    <button id="btn_op_mul_10" class="my-btn secondary">*10</button>
+                    <button id="btn_op_del_10" class="my-btn secondary">/10</button>
                     <button id="btn_op_backspace" class="my-btn primary execute">Back</button>
                 </div>
         
@@ -96,8 +96,10 @@
                 </div>
 
                 <div>
+                    <button id="btn_op_increment" class="my-btn secondary">+1</button>
                     <button id="btn_op_square" class="my-btn secondary">x²</button>
                     <button id="btn_op_fac" class="my-btn secondary">x!</button>
+                    <button id="btn_op_zeros" class="my-btn primary execute">000</button>
                 </div>
                 </div>
             </div>

@@ -123,3 +123,7 @@ a.home:hover {
   scale: 1.1;
   transition: scale 0.7s ease-in-out;
 }
+
+.some-text {
+  color: rgb(18, 158, 88);
+}

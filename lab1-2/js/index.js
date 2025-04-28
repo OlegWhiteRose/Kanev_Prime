@@ -1,4 +1,3 @@
-// файл script.js
 window.onload = function(){ 
     let a = ''
     let b = ''
@@ -8,19 +7,51 @@ window.onload = function(){
     // окно вывода результата
     outputElement = document.getElementById("result")
     
+    document.addEventListener('click', (event) => {
+        if (event.target.id == 'btn_op_equal') {
+            const text = outputElement.innerHTML.trim();
+            if (text) {
+                const num = parseInt(text);
+                const hex = num.toString(16).padStart(6, '0');
+                console.log(hex);
+                outputElement.style.color = `#${hex}`;
+            }
+        } else {
+            outputElement.style.color = '#000';
+        }
+    });
+    
+
     // список объектов кнопок циферблата (id которых начинается с btn_digit_)
     digitButtons = document.querySelectorAll('[id ^= "btn_digit_"]')
     
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
             if ((digit != '.') || (digit == '.' && !a.includes(digit))) { 
-                a += digit
+                if (a == '0' || a == '') {
+                    if (digit == '.') {
+                        a = '0.';
+                    } else {
+                        a = digit;
+                    }
+                } else {
+                    a += digit;
+                }
+                print(a);
             }
             outputElement.innerHTML = a
         } else {
             if ((digit != '.') || (digit == '.' && !b.includes(digit))) { 
-                b += digit
-                outputElement.innerHTML = b        
+                if (b == '0' && digit != '.') {
+                    if (digit == '.') {
+                        b = '0.';
+                    } else {
+                        b = digit;
+                    }
+                } else {
+                    b += digit;
+                }
+                print(b);     
             }
         }
     }
@@ -56,6 +87,30 @@ window.onload = function(){
     }
 
     // унарные операции
+    document.getElementById("btn_op_zeros").onclick = function() {
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+        if(+num == 0) {
+            return;
+        }
+
+        if(+num != 0) {
+            num += '000';
+        }
+        
+        changeNum(num);
+    }
+    document.getElementById("btn_op_increment").onclick = function() {
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+        
+        num = ((+num) + 1).toString()
+        changeNum(num);
+    }
     document.getElementById("btn_op_change").onclick = function() {
         num = b;
         if (b === '') {
@@ -70,6 +125,7 @@ window.onload = function(){
         if (b === '') {
             num = a;
         }
+        if (+num < 0) return;
 
         num = Math.sqrt(+a).toString();
         changeNum(num);
@@ -102,8 +158,29 @@ window.onload = function(){
         if (b === '') {
             num = a;
         }
+        if(num.length <= 1) {
+            return;
+        }
 
         num = num.slice(0, -1);
+        changeNum(num);
+    }
+    document.getElementById("btn_op_mul_10").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+
+        num = (+num * 10).toString();
+        changeNum(num);
+    }
+    document.getElementById("btn_op_del_10").onclick = function() { 
+        num = b;
+        if (b === '') {
+            num = a;
+        }
+
+        num = (+num / 10).toString();
         changeNum(num);
     }
     
@@ -122,7 +199,7 @@ window.onload = function(){
         b = ''
         selectedOperation = ''
         expressionResult = ''
-        outputElement.innerHTML = 0
+        print('0');
     }
     
     // кнопка расчёта результата
@@ -156,6 +233,32 @@ window.onload = function(){
     }
 
     function print(arg) {
-        outputElement.innerHTML = +arg
+        // Отображение переданного текста
+        outputElement.innerHTML = arg;
+        
+        // Очистка ранее установленных классов размера шрифта
+        outputElement.classList.remove('big', 'medium', 'small');
+        
+        // Применение класса в зависимости от длины текста
+        if (arg.length > 28) {
+            outputElement.classList.add('small');
+        } else if (arg.length > 20) {
+            outputElement.classList.add('medium');
+        } else {
+            outputElement.classList.add('big');
+        }
+    }
+
+    function print(arg) {
+        outputElement.innerHTML = arg;
+        outputElement.classList.remove('big', 'medium', 'small');
+    
+        if (arg.length > 28) {
+            outputElement.classList.add('small');
+        } else if (arg.length > 20) {
+            outputElement.classList.add('medium');
+        } else {
+            outputElement.classList.add('big');
+        }
     }
 };
