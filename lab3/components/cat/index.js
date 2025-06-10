@@ -1,12 +1,13 @@
-export class ProductComponent {
+export class CatComponent {
     constructor(parent) {
         this.parent = parent
     }
 
     getHTML(data) {
+        console.log(data);
         return (
             `
-                <div class="card mb-3" style="width: 540px;">
+                <div class="card mb-3" style="width: 540px;" id="${data.id}">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="${data.src}" class="img-fluid" alt="картинка">

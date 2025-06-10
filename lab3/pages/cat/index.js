@@ -1,20 +1,21 @@
-import {ProductComponent} from "../../components/product/index.js";
+import {CatComponent} from "../../components/cat/index.js";
 import {BackButtonComponent} from "../../components/back-button/index.js";
 import {MainPage} from "../main/index.js";
 
 
-export class ProductPage {
-    constructor(parent, id) {
+export class CatPage {
+    constructor(parent, data) {
         this.parent = parent
-        this.id = id
+        this.data = data
     }
 
     getData() {
+        console.log(this.data);
         return {
             id: 1,
-            src: "https://i.pinimg.com/originals/c9/ea/65/c9ea654eb3a7398b1f702c758c1c4206.jpg",
-            title: `Акция ${this.id}`,
-            text: "Такой акции вы еще не видели"
+            src: `${this.data.src}`,
+            title: `${this.data.title}`,
+            text: `${this.data.text}`
         }
     }
 
@@ -70,7 +71,7 @@ export class ProductPage {
         backButton.render(this.clickBack.bind(this))
     
         const data = this.getData()
-        const stock = new ProductComponent(this.pageRoot)
+        const stock = new CatComponent(this.pageRoot)
         stock.render(data)
     }
 }
