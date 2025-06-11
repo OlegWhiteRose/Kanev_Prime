@@ -8,7 +8,7 @@ export class CatCardComponent {
         id = id.trim();
         return (
             `
-                <div class="card" style="width: 300px;" id="${id}">
+                <div class="card main-card" id="${id}">
                     <img class="card-img-top" src="${data.src}" alt="картинка">
                     <div class="card-body">
                         <h5 class="card-title">${data.title}</h5>

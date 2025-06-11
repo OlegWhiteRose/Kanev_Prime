@@ -1,0 +1,39 @@
+.panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+}
+
+.upper-panel {
+    height: 64px;
+    width: 100%;
+}
+
+.bottom-panel {
+    height: 0px;
+    width: 100%;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #121212;
+    height: 100%;
+    width: 74px;
+    border-radius: 14px;
+    margin-left: 11px;
+}
+
+.main-panel {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    background-color: #121212;
+    width: 94.8%;
+    height: 100%;
+    margin-left: 8px;
+    border-radius: 14px;
+}

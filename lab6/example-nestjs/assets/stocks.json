@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "src": "https://pbs.twimg.com/amplify_video_thumb/1811792601680359424/img/8Q2yhgo4uKwtxOVD.jpg",
+    "title": "Jon-Yakitory",
+    "text": "Vocaloid producer"
+  },
+  {
+    "id": 2,
+    "src": "https://i.ytimg.com/vi/6tcINh-Beb8/hq720.jpg",
+    "title": "Hatsune Miku",
+    "text": "Vocaloid"
+  },
+  {
+    "id": 3,
+    "src": "https://wallpapercat.com/w/full/1/2/e/215678-3840x2160-desktop-4k-eminem-wallpaper.jpg",
+    "title": "Eminem",
+    "text": "Popular Musician"
+  },
+  {
+    "id": 4,
+    "src": "https://gdb.voanews.com/bae8c5d9-8d5f-4d02-b775-079535a85654_cx0_cy3_cw0_w1080_h608.jpg",
+    "title": "Imagine Dragons",
+    "text": "Group"
+  },
+  {
+    "id": 5,
+    "src": "https://media.gq-magazin.de/photos/605b02e84ecd46fcc2b59bb4/16:9/w_2560%2Cc_limit/justin-bieber-tattoos-encore-aufm.jpg",
+    "title": "Justin Bieber",
+    "text": "Solo Artist"
+  },
+  {
+    "id": 6,
+    "src": "https://artfiles.alphacoders.com/122/122514.jpg",
+    "title": "Kasane Teto",
+    "text": "Vocaloid"
+  }
+]

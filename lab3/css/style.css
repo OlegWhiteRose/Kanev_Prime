@@ -132,3 +132,8 @@ a.home:hover {
 .some-text {
   color: rgb(18, 158, 88);
 }
+
+.main-card {
+  width: 300px; 
+  height: min-content;
+}
