@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { FileService } from 'src/file/file.service';
 import { Stock } from './entities/stock.entity';
 import { CreateStockDto } from './dto/create-stock.dto';
@@ -25,22 +25,34 @@ export class StocksService {
       : stocks;
   }
 
-  findOne(id: number): Stock | null {
+  findOne(id: number): Stock {
     const stocks = this.fileService.read();
-    return stocks.find((stock) => stock.id === id) ?? null;
+    const stock = stocks.find((s) => s.id === id);
+    if (!stock) {
+      throw new NotFoundException(`Stock with id ${id} not found`);
+    }
+    return stock;
   }
 
   update(id: number, updateStockDto: UpdateStockDto): void {
     const stocks = this.fileService.read();
-    const updatedStocks = stocks.map((stock) =>
-      stock.id === id ? { ...stock, ...updateStockDto } : stock,
-    );
-    this.fileService.write(updatedStocks);
+    const index = stocks.findIndex((s) => s.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Stock with id ${id} not found`);
+    }
+    stocks[index] = { ...stocks[index], ...updateStockDto };
+    this.fileService.write(stocks);
   }
 
   remove(id: number): void {
-    const filteredStocks = this.fileService.read().filter((stock) => stock.id !== id);
+    const stocks = this.fileService.read();
+    const exists = stocks.some((s) => s.id === id);
+    if (!exists) {
+      throw new NotFoundException(`Stock with id ${id} not found`);
+    }
+    const filteredStocks = stocks.filter((stock) => stock.id !== id);
     this.fileService.write(filteredStocks);
   }
 }
+
 
