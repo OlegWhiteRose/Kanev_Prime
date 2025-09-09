@@ -84,11 +84,15 @@ export class CatPage {
         this.parent.innerHTML = '';
         const html = this.getHTML();
         this.parent.insertAdjacentHTML('beforeend', html);
-    
-        const backButton = new BackButtonComponent(this.pageRoot);
+        
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.className = 'buttons-container';
+        this.pageRoot.appendChild(buttonsContainer);
+
+        const backButton = new BackButtonComponent(buttonsContainer);
         backButton.render(this.clickBack.bind(this));
 
-        const editButton = new EditButtonComponent(this.pageRoot);
+        const editButton = new EditButtonComponent(buttonsContainer);
         editButton.render(this.clickEdit.bind(this));
 
         (async () => {

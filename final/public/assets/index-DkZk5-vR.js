@@ -14,31 +14,29 @@
                 </div>
             `}render(t){const e=this.getHTML(t);this.parent.insertAdjacentHTML("beforeend",e)}}class u{constructor(t){this.parent=t}addListeners(t){document.getElementById("back-button").addEventListener("click",t)}getHTML(){return`
                 <button id="back-button" class="btn btn-primary" type="button">Назад</button>
-            `}render(t){const e=this.getHTML();this.parent.insertAdjacentHTML("beforeend",e),this.addListeners(t)}}class p{constructor(t){this.parent=t}getHTML(){return`
+            `}render(t){const e=this.getHTML();this.parent.insertAdjacentHTML("beforeend",e),this.addListeners(t)}}class m{constructor(t){this.parent=t}getHTML(){return`
                 <button class="btn btn-info" id="edit-button" style="color: white;">
                     Редактировать
                 </button>
-            `}addListener(t){document.getElementById("edit-button").addEventListener("click",t)}render(t){const e=this.getHTML();this.parent.insertAdjacentHTML("beforeend",e),this.addListener(t)}}class m{constructor(t,e){this.parent=t,this.catData=e}getHTML(){return this.catData?`
-                <div class="container mt-4">
-                    <form id="edit-cat-form">
-                        <div class="mb-3">
-                            <label for="cat-title" class="form-label">Название</label>
-                            <input type="text" class="form-control" id="cat-title" value="${this.catData.title}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-text" class="form-label">Описание</label>
-                            <textarea class="form-control" id="cat-text" rows="3" required>${this.catData.text}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-src" class="form-label">URL изображения</label>
-                            <input type="url" class="form-control" id="cat-src" value="${this.catData.src}" required>
-                        </div>
-                        <div class="mb-3">
-                            <img id="preview-image" src="${this.catData.src}" alt="Предпросмотр" class="img-thumbnail" style="max-width: 200px;">
-                        </div>
-                        <button type="submit" class="btn btn-success">Сохранить изменения</button>
-                    </form>
-                </div>
+            `}addListener(t){document.getElementById("edit-button").addEventListener("click",t)}render(t){const e=this.getHTML();this.parent.insertAdjacentHTML("beforeend",e),this.addListener(t)}}class p{constructor(t,e){this.parent=t,this.catData=e}getHTML(){return this.catData?`
+                <form id="edit-cat-form">
+                    <div class="mb-3">
+                        <label for="cat-title" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="cat-title" value="${this.catData.title}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cat-text" class="form-label">Описание</label>
+                        <textarea class="form-control" id="cat-text" rows="3" required>${this.catData.text}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cat-src" class="form-label">URL изображения</label>
+                        <input type="url" class="form-control" id="cat-src" value="${this.catData.src}" required>
+                    </div>
+                    <div class="mb-3">
+                        <img id="preview-image" src="${this.catData.src}" alt="Предпросмотр" class="img-thumbnail" style="max-width: 200px;">
+                    </div>
+                    <button type="submit" class="btn btn-success">Сохранить изменения</button>
+                </form>
             `:'<div class="container mt-4"><div class="text-center">Загрузка...</div></div>'}addEventListeners(){const t=document.getElementById("cat-src"),e=document.getElementById("preview-image");t&&e&&t.addEventListener("input",a=>{e.src=a.target.value})}getFormData(){return{title:document.getElementById("cat-title").value,text:document.getElementById("cat-text").value,src:document.getElementById("cat-src").value}}render(){const t=this.getHTML();this.parent.insertAdjacentHTML("beforeend",t),this.addEventListeners()}update(t){this.catData=t;const e=this.parent.querySelector(".container");e&&(e.outerHTML=this.getHTML(),this.addEventListeners())}}class v{async get(t){try{const e=await fetch(t);return{data:await e.json(),status:e.status}}catch(e){return console.error("GET error:",e),{data:null,status:500}}}async post(t,e){try{const a=await fetch(t,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)});return{data:await a.json(),status:a.status}}catch(a){return console.error("POST error:",a),{data:null,status:500}}}async patch(t,e){try{const a=await fetch(t,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)});return{data:await a.json(),status:a.status}}catch(a){return console.error("PATCH error:",a),{data:null,status:500}}}async delete(t){try{const e=await fetch(t,{method:"DELETE"});return{data:await e.json(),status:e.status}}catch(e){return console.error("DELETE error:",e),{data:null,status:500}}}}const r=new v;class b{constructor(){this.baseUrl="http://localhost:3000"}getStocks(){return`${this.baseUrl}/stocks`}getStockById(t){return`${this.baseUrl}/stocks/${t}`}createStock(){return`${this.baseUrl}/stocks`}removeStockById(t){return`${this.baseUrl}/stocks/${t}`}updateStockById(t){return`${this.baseUrl}/stocks/${t}`}}const c=new b;class f{constructor(t,e){this.parent=t,this.id=e,this.data=null,this.formComponent=null}async loadCatData(){const{data:t}=await r.get(c.getStockById(this.id));return this.data=t,t}async updateCat(t){const{data:e}=await r.patch(c.updateStockById(this.id),t);return e}async deleteCat(){const{data:t}=await r.delete(c.removeStockById(this.id));return t}get pageRoot(){return document.getElementById("edit-page")}getHTML(){return`
                 <nav class="panel upper-panel">
                     <div class="logo-home">
@@ -67,7 +65,7 @@
                         <div id="edit-page" class="edit-page"></div>
                     </div>
                 </div>
-            `}clickBack(){new l(this.parent,this.id).render()}addEventListeners(){const t=document.getElementById("delete-button"),e=document.querySelector(".buttons-container .btn-success");e&&e.addEventListener("click",async a=>{a.preventDefault();const s=this.formComponent.getFormData();await this.updateCat(s),this.data={...this.data,...s},new l(this.parent,this.id).render()}),t&&t.addEventListener("click",async()=>{await this.deleteCat(),new o(this.parent).render()})}addNavigationListeners(){this.parent.querySelector(".home").addEventListener("click",()=>{new o(this.parent).render()})}async render(){this.parent.innerHTML="";const t=this.getHTML();this.parent.insertAdjacentHTML("beforeend",t);const e=document.createElement("div");e.className="buttons-container",this.pageRoot.appendChild(e),new u(e).render(this.clickBack.bind(this)),this.formComponent=new m(this.pageRoot,this.data),this.formComponent.render(),await this.loadCatData(),this.formComponent.update(this.data);const s=document.querySelector('#edit-cat-form button[type="submit"]');s&&e.appendChild(s);const n=document.createElement("button");n.className="btn btn-danger",n.textContent="Удалить карточку",n.id="delete-button",e.appendChild(n),this.addEventListeners(),this.addNavigationListeners()}}class l{constructor(t,e){this.parent=t,this.id=e}async getData(){const{data:t,status:e}=await r.get(c.getStockById(this.id));return e===200?t:null}get pageRoot(){return document.getElementById("product-page")}getHTML(){return`
+            `}clickBack(){new l(this.parent,this.id).render()}addEventListeners(){const t=document.getElementById("delete-button"),e=document.querySelector(".buttons-container .btn-success");e&&e.addEventListener("click",async a=>{a.preventDefault();const s=this.formComponent.getFormData();await this.updateCat(s),this.data={...this.data,...s},new l(this.parent,this.id).render()}),t&&t.addEventListener("click",async()=>{await this.deleteCat(),new o(this.parent).render()})}addNavigationListeners(){this.parent.querySelector(".home").addEventListener("click",()=>{new o(this.parent).render()})}async render(){this.parent.innerHTML="";const t=this.getHTML();this.parent.insertAdjacentHTML("beforeend",t);const e=document.createElement("div");e.className="buttons-container",this.pageRoot.appendChild(e),new u(e).render(this.clickBack.bind(this)),this.formComponent=new p(this.pageRoot,this.data),this.formComponent.render(),await this.loadCatData(),this.formComponent.update(this.data);const s=document.querySelector('#edit-cat-form button[type="submit"]');s&&e.appendChild(s);const n=document.createElement("button");n.className="btn btn-danger",n.textContent="Удалить карточку",n.id="delete-button",e.appendChild(n),this.addEventListeners(),this.addNavigationListeners()}}class l{constructor(t,e){this.parent=t,this.id=e}async getData(){const{data:t,status:e}=await r.get(c.getStockById(this.id));return e===200?t:null}get pageRoot(){return document.getElementById("product-page")}getHTML(){return`
                 <nav class="panel upper-panel">
                     <div class="logo-home">
                         <a href="#" class="logo">
@@ -95,7 +93,7 @@
                         <div id="product-page" class="product-page"></div>
                     </div>
                 </div>
-            `}clickBack(){new o(this.parent).render()}clickEdit(){new f(this.parent,this.id).render()}addNavigationListeners(){this.parent.querySelector(".home").addEventListener("click",()=>{new o(this.parent).render()})}render(){this.parent.innerHTML="";const t=this.getHTML();this.parent.insertAdjacentHTML("beforeend",t),new u(this.pageRoot).render(this.clickBack.bind(this)),new p(this.pageRoot).render(this.clickEdit.bind(this)),(async()=>{const s=await this.getData();s&&new g(this.pageRoot).render(s)})(),this.addNavigationListeners()}}class h{constructor(t){this.parent=t}getHTML(t){let e=`${t.id}`;return e=e.trim(),`
+            `}clickBack(){new o(this.parent).render()}clickEdit(){new f(this.parent,this.id).render()}addNavigationListeners(){this.parent.querySelector(".home").addEventListener("click",()=>{new o(this.parent).render()})}render(){this.parent.innerHTML="";const t=this.getHTML();this.parent.insertAdjacentHTML("beforeend",t);const e=document.createElement("div");e.className="buttons-container",this.pageRoot.appendChild(e),new u(e).render(this.clickBack.bind(this)),new m(e).render(this.clickEdit.bind(this)),(async()=>{const n=await this.getData();n&&new g(this.pageRoot).render(n)})(),this.addNavigationListeners()}}class h{constructor(t){this.parent=t}getHTML(t){let e=`${t.id}`;return e=e.trim(),`
                 <div class="card" style="width: 300px; height: min-content;" id="${e}">
                     <img class="card-img-top" src="${t.src}" alt="картинка" style="width: 100%; height: 200px; object-fit: cover;">
                     <div class="card-body">

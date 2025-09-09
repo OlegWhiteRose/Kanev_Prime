@@ -27,25 +27,7 @@
     margin-bottom: 20px;
 }
 
-.edit-page .buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.edit-page .error-message {
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.edit-page .success-message {
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.edit-page button:disabled {
+button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }

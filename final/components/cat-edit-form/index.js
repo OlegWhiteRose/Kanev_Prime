@@ -11,26 +11,24 @@ export class CatEditFormComponent {
         
         return (
             `
-                <div class="container mt-4">
-                    <form id="edit-cat-form">
-                        <div class="mb-3">
-                            <label for="cat-title" class="form-label">Название</label>
-                            <input type="text" class="form-control" id="cat-title" value="${this.catData.title}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-text" class="form-label">Описание</label>
-                            <textarea class="form-control" id="cat-text" rows="3" required>${this.catData.text}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-src" class="form-label">URL изображения</label>
-                            <input type="url" class="form-control" id="cat-src" value="${this.catData.src}" required>
-                        </div>
-                        <div class="mb-3">
-                            <img id="preview-image" src="${this.catData.src}" alt="Предпросмотр" class="img-thumbnail" style="max-width: 200px;">
-                        </div>
-                        <button type="submit" class="btn btn-success">Сохранить изменения</button>
-                    </form>
-                </div>
+                <form id="edit-cat-form">
+                    <div class="mb-3">
+                        <label for="cat-title" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="cat-title" value="${this.catData.title}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cat-text" class="form-label">Описание</label>
+                        <textarea class="form-control" id="cat-text" rows="3" required>${this.catData.text}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cat-src" class="form-label">URL изображения</label>
+                        <input type="url" class="form-control" id="cat-src" value="${this.catData.src}" required>
+                    </div>
+                    <div class="mb-3">
+                        <img id="preview-image" src="${this.catData.src}" alt="Предпросмотр" class="img-thumbnail" style="max-width: 200px;">
+                    </div>
+                    <button type="submit" class="btn btn-success">Сохранить изменения</button>
+                </form>
             `
         );
     }
