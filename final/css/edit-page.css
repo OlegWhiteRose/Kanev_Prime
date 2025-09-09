@@ -1,0 +1,51 @@
+.edit-page {
+    padding: 10px;
+}
+
+.edit-page .form-label {
+    font-weight: 600;
+    color: white;
+}
+
+.edit-page .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.edit-page .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.edit-page .img-thumbnail {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.edit-page button {
+    margin-bottom: 20px;
+}
+
+.edit-page .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.edit-page .error-message {
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.edit-page .success-message {
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.edit-page button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

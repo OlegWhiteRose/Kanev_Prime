@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "src": "https://terra.vet/wp-content/uploads/78-1.jpg",
+    "title": "Бенгальская кошка",
+    "text": "Короткошерстная, с очень мускулистым телом"
+  },
+  {
+    "id": 2,
+    "src": "https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03002/uploads/article/403/Britanskaya_korotkoshorstnaya_1023x448.webp",
+    "title": "Британская кошка",
+    "text": "Кошка среднего размера, но мощного телосложения"
+  },
+  {
+    "id": 3,
+    "src": "https://hvost.news/upload/medialibrary/dca/dca1e03d1b07cc49dab70d5f54524eca.jpg",
+    "title": "Сибирская кошка",
+    "text": "Отличаются уникальной мягкой шерстью"
+  },
+  {
+    "id": 4,
+    "src": "https://s0.rbk.ru/v6_top_pics/media/img/0/91/346957380121910.webp",
+    "title": "Сиамская кошка",
+    "text": "Длинная кошка, отличается необычным окрасом"
+  },
+  {
+    "id": 5,
+    "src": "https://static.tildacdn.com/tild6536-3634-4436-a232-373037323033/756723943137739.jpeg",
+    "title": "Шотландская кошка",
+    "text": "Одна из самых молодых пород с вислоухостью"
+  },
+  {
+    "id": 6,
+    "src": "https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03002/uploads/article/388/meyn_kun_1023kh448_min.jpg",
+    "title": "Мейн-кун",
+    "text": "Самая крупная домашняя порода кошек"
+  }
+]
