@@ -1,24 +1,32 @@
 import { BackButtonComponent } from "../../components/back-button/index.js";
+import { CatEditFormComponent } from "../../components/cat-edit-form/index.js";
 import { CatPage } from "../cat/index.js";
 import { MainPage } from "../main/index.js";
-import { IvanPage } from "../ivan/index.js";
 
 import { ajax } from "../../modules/ajax.js";
 import { stockUrls } from "../../modules/stockUrls.js";
 
 export class CatEditPage {
-    constructor(parent, data) {
+    constructor(parent, catId) {
         this.parent = parent;
+        this.id = catId;
+        this.data = null;
+        this.formComponent = null;
+    }
+
+    async loadCatData() {
+        const { data } = await ajax.get(stockUrls.getStockById(this.id));
         this.data = data;
+        return data;
     }
 
     async updateCat(updatedData) {
-        const { data, status } = await ajax.patch(stockUrls.updateStockById(this.data.id), updatedData);
+        const { data } = await ajax.patch(stockUrls.updateStockById(this.id), updatedData);
         return data;
     }
 
     async deleteCat() {
-        const { data, status } = await ajax.delete(stockUrls.removeStockById(this.data.id));
+        const { data } = await ajax.delete(stockUrls.removeStockById(this.id));
         return data;
     }
 
@@ -60,89 +68,49 @@ export class CatEditPage {
         );
     }
 
-    getEditFormHTML() {
-        return (
-            `
-                <div class="container mt-4">
-                    <form id="edit-cat-form">
-                        <div class="mb-3">
-                            <label for="cat-title" class="form-label">Название</label>
-                            <input type="text" class="form-control" id="cat-title" value="${this.data.title}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-text" class="form-label">Описание</label>
-                            <textarea class="form-control" id="cat-text" rows="3" required>${this.data.text}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-src" class="form-label">URL изображения</label>
-                            <input type="url" class="form-control" id="cat-src" value="${this.data.src}" required>
-                        </div>
-                        <div class="mb-3">
-                            <img id="preview-image" src="${this.data.src}" alt="Предпросмотр" class="img-thumbnail" style="max-width: 200px;">
-                        </div>
-                        <button type="submit" class="btn btn-success">Сохранить изменения</button>
-                    </form>
-                </div>
-            `
-        );
-    }
-
     clickBack() {
-        const catPage = new CatPage(this.parent, this.data);
+        const catPage = new CatPage(this.parent, this.id);
         catPage.render();
     }
 
     addEventListeners() {
-        const srcInput = document.getElementById('cat-src');
-        const previewImage = document.getElementById('preview-image');
         const deleteButton = document.getElementById('delete-button');
         const saveButton = document.querySelector('.buttons-container .btn-success');
 
-        srcInput.addEventListener('input', (e) => {
-            previewImage.src = e.target.value;
-        });
+        if (saveButton) {
+            saveButton.addEventListener('click', async (e) => {
+                e.preventDefault();
 
-        // Обработчик для кнопки сохранения (теперь находится в контейнере)
-        saveButton.addEventListener('click', async (e) => {
-            e.preventDefault();
+                const updatedData = this.formComponent.getFormData();
 
-            const updatedData = {
-                title: document.getElementById('cat-title').value,
-                text: document.getElementById('cat-text').value,
-                src: document.getElementById('cat-src').value
-            };
+                await this.updateCat(updatedData);
+                this.data = { ...this.data, ...updatedData };
 
-            await this.updateCat(updatedData);
-            this.data = { ...this.data, ...updatedData };
+                const catPage = new CatPage(this.parent, this.id);
+                catPage.render();
+            });
+        }
 
-            const catPage = new CatPage(this.parent, this.data);
-            catPage.render();
-        });
+        if (deleteButton) {
+            deleteButton.addEventListener('click', async () => {
+                await this.deleteCat();
 
-        deleteButton.addEventListener('click', async () => {
-            await this.deleteCat();
-
-            const mainPage = new MainPage(this.parent);
-            mainPage.render();
-        });
+                const mainPage = new MainPage(this.parent);
+                mainPage.render();
+            });
+        }
     }
 
     addNavigationListeners() {
         const home = this.parent.querySelector('.home');
-        const global = this.parent.querySelector('.global-button');
 
         home.addEventListener('click', () => {
             const mainPage = new MainPage(this.parent);
             mainPage.render();
         });
-
-        global.addEventListener('click', () => {
-            const ivanPage = new IvanPage(this.parent);
-            ivanPage.render();
-        });
     }
 
-    render() {
+    async render() {
         this.parent.innerHTML = '';
         const html = this.getHTML();
         this.parent.insertAdjacentHTML('beforeend', html);
@@ -154,8 +122,12 @@ export class CatEditPage {
         const backButton = new BackButtonComponent(buttonsContainer);
         backButton.render(this.clickBack.bind(this));
 
-        const formHTML = this.getEditFormHTML();
-        this.pageRoot.insertAdjacentHTML('beforeend', formHTML);
+        this.formComponent = new CatEditFormComponent(this.pageRoot, this.data);
+        this.formComponent.render();
+
+        await this.loadCatData();
+
+        this.formComponent.update(this.data);
 
         const saveButton = document.querySelector('#edit-cat-form button[type="submit"]');
         if (saveButton) {
@@ -172,3 +144,4 @@ export class CatEditPage {
         this.addNavigationListeners();
     }
 }
+

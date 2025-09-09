@@ -6,7 +6,7 @@ export class EditButtonComponent {
     getHTML() {
         return (
             `
-                <button class="btn btn-warning mb-3" id="edit-button" style="color: white;">
+                <button class="btn btn-info" id="edit-button" style="color: white;">
                     Редактировать
                 </button>
             `

@@ -4,7 +4,6 @@ export class CatComponent {
     }
 
     getHTML(data) {
-        console.log(data);
         return (
             `
                 <div class="card mb-3" style="width: 540px;" id="${data.id}">
@@ -25,7 +24,6 @@ export class CatComponent {
     }
 
     render(data) {
-        console.log('here');
         const html = this.getHTML(data)
         this.parent.insertAdjacentHTML('beforeend', html)
     }

@@ -56,54 +56,10 @@ export class MainPage {
         )
     }
 
-    getIvanHTML() {
-        return (
-            `
-                <nav class="panel upper-panel">
-                    <div class="logo-home">
-                        <a href="#" class="logo">
-                            <img src="img/calc.jpeg" width="64px">
-                        </a>
-                        <a href="#" class="home">
-                            <img src="img/9073942_home_icon.svg" width="22px">
-                        </a>
-                    </div>
-                    <button class="global-button">
-                        <div class="main-text author">Автор: Сысоев Иван ИУ5</div>
-                    </button>
-                    <a href="https://github.com/OlegWhiteRose/" class="main-text github">github</a>
-                </nav>
-
-                <div class="content">
-                    <nav class="panel left-panel">
-                        <button class="plus">+</button>
-                        <a class="tg">
-                            <img src="img/tg.svg" class="tg">
-                        </a>
-                    </nav>
-
-                    <div class="main-panel">
-                        <h1 class="some-text">Иван Сысоев ИУ5-41Б ICS BMSTU Student</h1>
-                    </div>
-                </div>
-            `
-        )
-    }
-
     clickCard(e) {
-        const card = document.getElementById(`${e.target.dataset.id}`);
-        const src = card.querySelector('.card-img-top').src;
-        const title = card.querySelector('.card-title').innerHTML;
-        const text = card.querySelector('.card-text').innerHTML;
         const id = e.target.dataset.id;
-        const cardContent = {
-            src,
-            title,
-            text,
-            id
-        };
 
-        const catPage = new CatPage(this.parent, cardContent)
+        const catPage = new CatPage(this.parent, id)
         catPage.render()
     }
 
@@ -128,7 +84,6 @@ export class MainPage {
 
     addEventListeners() {
         const home = this.parent.querySelector('.home');
-        const global = this.parent.querySelector('.global-button');
 
         home.addEventListener('click', async () => {
             this.parent.innerHTML = ''
@@ -145,14 +100,6 @@ export class MainPage {
                     catCard.render(item, this.clickCard.bind(this))
                 })
             }
-        });
-
-        global.addEventListener('click', () => {
-            this.parent.innerHTML = ''
-            const html = this.getIvanHTML()
-            this.parent.insertAdjacentHTML('beforeend', html)
-
-            this.addEventListeners();
         });
     }
 }

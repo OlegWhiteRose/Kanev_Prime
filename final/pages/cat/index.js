@@ -3,19 +3,18 @@ import {BackButtonComponent} from "../../components/back-button/index.js";
 import {EditButtonComponent} from "../../components/edit-button/index.js";
 import {MainPage} from "../main/index.js";
 import {CatEditPage} from "../cat-edit/index.js";
-import {IvanPage} from "../ivan/index.js";
 
 import {ajax} from "../../modules/ajax.js";
 import {stockUrls} from "../../modules/stockUrls.js";
 
 export class CatPage {
-    constructor(parent, data) {
+    constructor(parent, catId) {
         this.parent = parent
-        this.data = data
+        this.id = catId;
     }
 
     async getData() {
-        const { data, status } = await ajax.get(stockUrls.getStockById(this.data.id));
+        const { data, status } = await ajax.get(stockUrls.getStockById(this.id));
 
         if (status === 200) {
             return data;
@@ -68,22 +67,16 @@ export class CatPage {
     }
 
     clickEdit() {
-        const catEditPage = new CatEditPage(this.parent, this.data);
+        const catEditPage = new CatEditPage(this.parent, this.id);
         catEditPage.render();
     }
 
     addNavigationListeners() {
         const home = this.parent.querySelector('.home');
-        const global = this.parent.querySelector('.global-button');
 
         home.addEventListener('click', () => {
             const mainPage = new MainPage(this.parent);
             mainPage.render();
-        });
-
-        global.addEventListener('click', () => {
-            const ivanPage = new IvanPage(this.parent);
-            ivanPage.render();
         });
     }
 
